@@ -1,5 +1,6 @@
 import streamlit as st
 from PIL import Image, ImageEnhance
+from pathlib import Path
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
@@ -28,21 +29,29 @@ elif page == "Page 2: Group Members":
     st.title("Group Members")
     st.write("### Meet the Team Members")
 
-    # Display Hardcoded Member Names
+    # Data anggota kelompok
     members = [
-        {"name": "Member 1: Alice", "photo": None},
-        {"name": "Member 2: Bob", "photo": None},
-        {"name": "Member 3: Charlie", "photo": None},
-        {"name": "Member 4: Diana", "photo": None}
+        {"name": "Alice", "photo": "Alice.jpg", "position": "Leader"},
+        {"name": "Bob", "photo": "Bob.jpg", "position": "Data Analyst"},
+        {"name": "Charlie", "photo": "Charlie.jpg", "position": "Developer"},
+        {"name": "Diana", "photo": "Diana.jpg", "position": "Designer"}
     ]
 
-    # Iterate through members to display their names and upload sections
-    for member in members:
-        st.write(f"**{member['name']}**")
-        uploaded_photo = st.file_uploader(f"Upload photo for {member['name']}", type=["png", "jpg", "jpeg"], key=f"photo_{member['name']}")
-        if uploaded_photo:
-            photo = Image.open(uploaded_photo)
-            st.image(photo, caption=f"{member['name']}'s Photo", use_column_width=True)
+    # Display members in grid layout
+    cols = st.columns(4)  # Membuat 4 kolom untuk anggota kelompok
+
+    for idx, member in enumerate(members):
+        with cols[idx % 4]:  # Distribusi anggota ke dalam kolom
+            # Periksa apakah file gambar ada
+            photo_path = Path(member["photo"])
+            if photo_path.exists():
+                # Tampilkan gambar jika tersedia
+                image = Image.open(photo_path)
+                st.image(image, caption=member["name"], use_column_width=True)
+                st.markdown(f"**{member['position']}**", unsafe_allow_html=True)
+            else:
+                # Peringatan jika gambar tidak ditemukan
+                st.warning(f"Photo not found for {member['name']}!")
 
 # Page 3: Image Transformation App
 elif page == "Page 3: Image Transformation App":
