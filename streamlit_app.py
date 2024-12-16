@@ -22,7 +22,7 @@ elif page == "Page 2: Group Members":
 
     # List of group members with images
     members = [
-        {"name": "Alice", "role": "Leader", "photo": "alice.png"},
+        {"name": "MUHAMMAD YUSUF IRSYADULLOH (004202300040)", "role": "Leader", "photo": "alice.png"},
         {"name": "Bob", "role": "Coordinator", "photo": "bob.png"},
         {"name": "Charlie", "role": "Designer", "photo": "charlie.png"},
         {"name": "Diana", "role": "Developer", "photo": "diana.png"}
