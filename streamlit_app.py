@@ -9,7 +9,7 @@ page = st.sidebar.radio("Go to", ["Page 1: Group Logo", "Page 2: Group Members",
 if page == "Page 1: Group Logo":
     # Display logo warning first
     try:
-        logo = Image.open("logo.jpg")  # Replace with your logo file name
+        logo = Image.open("PresidentUniversityLogo.png")  # Replace with your logo file name
         st.image(logo, caption="Group Logo", width=300)
     except FileNotFoundError:
         st.warning("Logo not found! Please make sure 'logo.jpg' is in the directory.")
