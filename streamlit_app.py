@@ -10,7 +10,7 @@ if page == "Page 1: Group Logo":
     # Display logo warning first
     try:
         logo = Image.open("PresidentUniversityLogo.png")  # Replace with your logo file name
-        st.image(logo, caption="Group Logo", width=300)
+        st.image(logo, caption="Group Logo", use_container_width=True)
     except FileNotFoundError:
         st.warning("Logo not found! Please make sure 'logo.jpg' is in the directory.")
     
@@ -56,7 +56,7 @@ elif page == "Page 3: Image Transformation App":
 
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
-        st.image(image, caption="Original Image", use_column_width=True)
+        st.image(image, caption="Original Image", use_container_width=True)
 
         # Image transformation options
         st.write("### Transformation Options")
@@ -68,4 +68,7 @@ elif page == "Page 3: Image Transformation App":
         transformed_image = image.rotate(rotation_angle).resize((resize_width, resize_height))
 
         # Display transformed image
-        st.image(transformed_image, caption="Transformed Image", use_column_width=True)
+        st.image(transformed_image, caption="Transformed Image", use_container_width=True)
+
+        # Provide download link
+        st.download_button("Download Transformed Image", data=transformed_image.tobytes(), file_name="transformed_image.png", mime="image/png")
