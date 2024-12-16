@@ -3,24 +3,16 @@ from PIL import Image, ImageEnhance
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Page 1: Instructions", "Page 2: Group Members", "Page 3: Image Transformation App"])
+page = st.sidebar.radio("Go to", ["Page 1: Linear Algebra Group 4", "Page 2: Group Members", "Page 3: Image Transformation App"])
 
-# Page 1: Instructions
-if page == "Page 1: Instructions":
-    st.title("Instructions")
+# Page 1: Linear Algebra Group 4
+if page == "Page 1: Linear Algebra Group 4":
+    st.title("Linear Algebra Group 4")
     st.write("""
-    Welcome to the Image Transformation App! Follow the instructions below to use the app:
+    Welcome to the Linear Algebra Group 4 App! This app contains the following features:
     
-    1. Navigate to **Page 3: Image Transformation App** using the sidebar.
-    2. Upload an image (supported formats: PNG, JPG, JPEG).
-    3. Use the sliders to:
-       - Adjust brightness.
-       - Rotate the image.
-       - Scale the image (resize).
-       - Apply skew transformations.
-    4. View the resulting image after each transformation.
-
-    Use **Page 2: Group Members** to view the team members of this project.
+    1. View the project members on **Page 2: Group Members**.
+    2. Perform image transformations on **Page 3: Image Transformation App**.
     """)
 
     # Upload and Display Logo
@@ -33,25 +25,19 @@ if page == "Page 1: Instructions":
 # Page 2: Group Members
 elif page == "Page 2: Group Members":
     st.title("Group Members")
-    st.write("""
-    This project was developed by the following team members:
-    """)
+    st.write("### Meet the Team Members")
 
-    # Add member images and names
-    num_members = st.number_input("Number of group members", min_value=1, max_value=10, value=4, step=1, key="num_members")
-    
-    for i in range(1, num_members + 1):
-        st.write(f"### Member {i}")
-        member_name = st.text_input(f"Enter name for Member {i}", key=f"name_{i}")
-        member_image = st.file_uploader(f"Upload an image for Member {i}", type=["png", "jpg", "jpeg"], key=f"image_{i}")
-        
-        if member_name:
-            st.write(f"**Name**: {member_name}")
-        if member_image:
-            member_photo = Image.open(member_image)
-            st.image(member_photo, caption=f"{member_name}'s Photo", use_column_width=True)
-
-    st.write("Thank you for using our app!")
+    # Member Input Section
+    member_slots = 4  # Adjust as needed
+    for i in range(1, member_slots + 1):
+        col1, col2 = st.columns([1, 3])  # Create layout for name and photo
+        with col1:
+            member_name = st.text_input(f"Name of Member {i}", key=f"name_{i}")
+        with col2:
+            member_image = st.file_uploader(f"Upload photo for Member {i}", type=["png", "jpg", "jpeg"], key=f"image_{i}")
+            if member_image:
+                member_photo = Image.open(member_image)
+                st.image(member_photo, caption=f"{member_name}'s Photo", use_column_width=True)
 
 # Page 3: Image Transformation App
 elif page == "Page 3: Image Transformation App":
