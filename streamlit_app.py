@@ -15,6 +15,13 @@ if page == "Page 1: Linear Algebra Group 4":
     2. View group member images on **Page 3: Image Transformation App**.
     """)
 
+    # Display logo
+    try:
+        logo = Image.open("logo.jpg")  # Replace with your logo file name
+        st.image(logo, caption="Group Logo", width=300)
+    except FileNotFoundError:
+        st.warning("Logo not found! Please make sure 'logo.jpg' is in the directory.")
+
 # Page 2: Group Members
 elif page == "Page 2: Group Members":
     st.title("Group Members")
