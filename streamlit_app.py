@@ -18,6 +18,10 @@ if page == "Page 1: Group Logo":
     st.title("Linear Group 4")
     st.write("""
     Welcome to the Linear Algebra Group 4 App! Below is the group logo:
+
+    ### Instructions:
+    - Go to **Page 2: Group Members** to view the team members and their photos.
+    - Go to **Page 3: Image Transformation App** to upload an image and perform transformations like rotation and resizing.
     """)
 
 # Page 2: Group Members
