@@ -7,6 +7,14 @@ page = st.sidebar.radio("Go to", ["Page 1: Linear Algebra Group 4", "Page 2: Gro
 
 # Page 1: Linear Algebra Group 4
 if page == "Page 1: Linear Algebra Group 4":
+    # Upload and Display Logo
+    st.write("### Upload and Display Logo")
+    logo_file = st.file_uploader("Upload a logo", type=["png", "jpg", "jpeg"], key="logo")
+    if logo_file is not None:
+        logo = Image.open(logo_file)
+        st.image(logo, caption="Project Logo", width=200)
+
+    # Title and Description
     st.title("Linear Algebra Group 4")
     st.write("""
     Welcome to the Linear Algebra Group 4 App! This app contains the following features:
@@ -24,8 +32,8 @@ elif page == "Page 2: Group Members":
     members = [
         {"name": "MUHAMMAD YUSUF IRSYADULLOH (004202300040)", "role": "Leader", "photo": "Muka yusuf.jpg"},
         {"name": "SYARIFA NURAINI (004202300028)", "role": "Member", "photo": "Muka syarifa.jpg"},
-        {"name": "MARIA DIANATA	(004202300084)", "role": "Member", "photo": "Muka Maria.jpg"},
-        {"name": "BUNGA GEMBIRA	(004202300037)", "role": "Member", "photo": "Muka Bunga.jpg"}
+        {"name": "MARIA DIANATA (004202300084)", "role": "Member", "photo": "Muka Maria.jpg"},
+        {"name": "BUNGA GEMBIRA (004202300037)", "role": "Member", "photo": "Muka Bunga.jpg"}
     ]
 
     # Display each member's photo and role
