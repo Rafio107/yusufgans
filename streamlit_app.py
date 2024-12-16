@@ -3,16 +3,13 @@ from PIL import Image
 
 # Sidebar Navigation
 st.sidebar.title("Navigation")
-page = st.sidebar.radio("Go to", ["Page 1: Linear Algebra Group 4", "Page 2: Group Members", "Page 3: Image Transformation App"])
+page = st.sidebar.radio("Go to", ["Page 1: Group Logo", "Page 2: Group Members", "Page 3: Image Transformation App"])
 
-# Page 1: Linear Algebra Group 4
-if page == "Page 1: Linear Algebra Group 4":
-    st.title("Linear Algebra Group 4")
+# Page 1: Group Logo
+if page == "Page 1: Group Logo":
+    st.title("Group Logo")
     st.write("""
-    Welcome to the Linear Algebra Group 4 App! This app contains the following features:
-    
-    1. View the project members on **Page 2: Group Members**.
-    2. View group member images on **Page 3: Image Transformation App**.
+    Welcome to the Linear Algebra Group 4 App! Below is the group logo:
     """)
 
     # Display logo
@@ -47,21 +44,23 @@ elif page == "Page 2: Group Members":
 # Page 3: Image Transformation App
 elif page == "Page 3: Image Transformation App":
     st.title("Image Transformation App")
-    st.write("View group member images below:")
+    st.write("Upload an image and perform transformations using sliders.")
 
-    # List of group members with images
-    members = [
-        {"name": "MUHAMMAD YUSUF IRSYADULLOH (004202300040)", "photo": "Muka yusuf.jpg"},
-        {"name": "SYARIFA NURAINI (004202300028)", "photo": "Muka syarifa.jpg"},
-        {"name": "MARIA DIANATA\t(004202300084)", "photo": "Muka Maria.jpg"},
-        {"name": "BUNGA GEMBIRA\t(004202300037)", "photo": "Muka Bunga.jpg"}
-    ]
+    # File uploader for image input
+    uploaded_file = st.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 
-    # Display each member's photo
-    for member in members:
-        st.write(f"**{member['name']}**")
-        try:
-            photo = Image.open(member['photo'])
-            st.image(photo, caption=f"{member['name']}", width=300)
-        except FileNotFoundError:
-            st.warning(f"Photo for {member['name']} not found!")
+    if uploaded_file is not None:
+        image = Image.open(uploaded_file)
+        st.image(image, caption="Original Image", use_column_width=True)
+
+        # Image transformation options
+        st.write("### Transformation Options")
+        rotation_angle = st.slider("Rotate Image (degrees)", -180, 180, 0)
+        resize_width = st.slider("Resize Width", 50, 500, image.width)
+        resize_height = st.slider("Resize Height", 50, 500, image.height)
+
+        # Apply transformations
+        transformed_image = image.rotate(rotation_angle).resize((resize_width, resize_height))
+
+        # Display transformed image
+        st.image(transformed_image, caption="Transformed Image", use_column_width=True)
