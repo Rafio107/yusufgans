@@ -7,6 +7,14 @@ page = st.sidebar.radio("Go to", ["Page 1: Linear Algebra Group 4", "Page 2: Gro
 
 # Page 1: Linear Algebra Group 4
 if page == "Page 1: Linear Algebra Group 4":
+    # Logo Section
+    st.write("### Upload and Display Logo")
+    logo_file = st.file_uploader("Upload a logo", type=["png", "jpg", "jpeg"], key="logo")
+    if logo_file is not None:
+        logo = Image.open(logo_file)
+        st.image(logo, caption="Project Logo", use_column_width=True)
+
+    # Title and Description
     st.title("Linear Algebra Group 4")
     st.write("""
     Welcome to the Linear Algebra Group 4 App! This app contains the following features:
@@ -15,29 +23,26 @@ if page == "Page 1: Linear Algebra Group 4":
     2. Perform image transformations on **Page 3: Image Transformation App**.
     """)
 
-    # Upload and Display Logo
-    st.write("### Upload and Display Logo")
-    logo_file = st.file_uploader("Upload a logo", type=["png", "jpg", "jpeg"], key="logo")
-    if logo_file is not None:
-        logo = Image.open(logo_file)
-        st.image(logo, caption="Project Logo", use_column_width=True)
-
 # Page 2: Group Members
 elif page == "Page 2: Group Members":
     st.title("Group Members")
     st.write("### Meet the Team Members")
 
-    # Member Input Section
-    member_slots = 4  # Adjust as needed
-    for i in range(1, member_slots + 1):
-        col1, col2 = st.columns([1, 3])  # Create layout for name and photo
-        with col1:
-            member_name = st.text_input(f"Name of Member {i}", key=f"name_{i}")
-        with col2:
-            member_image = st.file_uploader(f"Upload photo for Member {i}", type=["png", "jpg", "jpeg"], key=f"image_{i}")
-            if member_image:
-                member_photo = Image.open(member_image)
-                st.image(member_photo, caption=f"{member_name}'s Photo", use_column_width=True)
+    # Display Hardcoded Member Names
+    members = [
+        {"name": "Member 1: Alice", "photo": None},
+        {"name": "Member 2: Bob", "photo": None},
+        {"name": "Member 3: Charlie", "photo": None},
+        {"name": "Member 4: Diana", "photo": None}
+    ]
+
+    # Iterate through members to display their names and upload sections
+    for member in members:
+        st.write(f"**{member['name']}**")
+        uploaded_photo = st.file_uploader(f"Upload photo for {member['name']}", type=["png", "jpg", "jpeg"], key=f"photo_{member['name']}")
+        if uploaded_photo:
+            photo = Image.open(uploaded_photo)
+            st.image(photo, caption=f"{member['name']}'s Photo", use_column_width=True)
 
 # Page 3: Image Transformation App
 elif page == "Page 3: Image Transformation App":
