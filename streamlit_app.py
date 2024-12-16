@@ -7,17 +7,18 @@ page = st.sidebar.radio("Go to", ["Page 1: Group Logo", "Page 2: Group Members",
 
 # Page 1: Group Logo
 if page == "Page 1: Group Logo":
-    st.title("Group Logo")
-    st.write("""
-    Welcome to the Linear Algebra Group 4 App! Below is the group logo:
-    """)
-
-    # Display logo
+    # Display logo warning first
     try:
         logo = Image.open("logo.jpg")  # Replace with your logo file name
         st.image(logo, caption="Group Logo", width=300)
     except FileNotFoundError:
         st.warning("Logo not found! Please make sure 'logo.jpg' is in the directory.")
+    
+    # Title and content
+    st.title("Linear Group 4")
+    st.write("""
+    Welcome to the Linear Algebra Group 4 App! Below is the group logo:
+    """)
 
 # Page 2: Group Members
 elif page == "Page 2: Group Members":
